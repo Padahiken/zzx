@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input class="search-input" placeholder="输入书名搜索" bindinput="inputChange" value="{{keyword}}"/>
+    <button bindtap="searchBook" class="search-btn">搜索</button>
+  </view>
+
+  <!-- 图书列表 -->
+  <scroll-view scroll-y class="book-wrap">
+    <view wx:for="{{bookList}}" wx:key="book_id" class="book-item" bindtap="goDetail" data-id="{{item.book_id}}">
+      <image class="book-img" src="{{item.cover_img||'/images/default.png'}}" mode="aspectFill"></image>
+      <view class="book-info">
+        <text class="book-name">{{item.book_name}}</text>
+        <text class="book-author">作者：{{item.author}}</text>
+        <text class="book-stock">可借库存：{{item.total_num - item.borrow_num}} 本</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
